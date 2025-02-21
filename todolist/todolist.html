@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="todolist.css">
+</head>
+<body>
+    <div id="all">
+    <h1>STUDENT FORM</h1>
+    <div class="form">
+    <form>
+        <table>
+            <tr>
+                <td >Name</td> <td><input id="name" ></td>
+            </tr>
+            <tr>
+                <td >Age</td> <td><input id="age" ></td>
+            </tr>
+            <tr>
+                <td >Gender</td> <td><input type="radio" value="Male" name="gender">Male<input type="radio" value="Female" name="gender">Female</td>
+            </tr>
+            <tr>
+                <td >Course</td> 
+                <td><select id="course" style="width: 169px;">
+                    <option>Java</option>
+                    <option>Python</option>
+                    <option>SQL</option>
+                </select></td>
+            </tr>
+            <tr>
+                <td>E-mail</td> <td><input id="email"></td>
+            </tr>
+        </table>
+        <div class="button">
+            <button type="button" onclick="addrow()">Save</button>
+        </div>
+    </form>
+    </div>
+    <br>
+
+    
+    <diV class="table">
+        <table id="table2">
+            <tr>
+                <td>NAME</td><td>AGE</td><td>Gender</td><td>Course</td><td>EMAIL</td><td>ACTION</td>
+            </tr>
+        </table>
+    </diV>
+    </div>
+</body>
+</html>
+
+<script>
+    //selecting table
+    var table2=document.getElementById("table2")
+    var Name=document.getElementById("name")
+    var Age=document.getElementById("age")
+    var Course=document.getElementById("course")
+    var Email=document.getElementById("email")
+    
+    function addrow(){
+        var row=document.createElement('tr')
+
+        var col1=document.createElement('td')
+        if (Name.value){
+            col1.textContent=Name.value;
+            row.append(col1)
+        }
+        else{
+            alert("'PLEASE ENTER NAME'")
+            return
+        }
+        
+        
+        var col2=document.createElement('td')
+        if(Age.value){
+            col2.textContent=Age.value;
+            row.append(col2)
+        }
+        else{
+            alert("'PLEASE ENTER [NAME]'")
+            return
+        }
+        
+        var Gender=document.querySelector("input[name='gender']:checked")
+        if(Gender){
+            var col3=document.createElement('td')
+            col3.textContent=Gender.value;
+            row.append(col3)
+        }
+        else{
+            alert("'PLEASE SELECT GENDER'")
+            return
+        }
+        
+
+        var col4=document.createElement('td')
+        if(Course.value){
+            col4.textContent=Course.value;
+            row.append(col4)
+        }
+        else{
+            alert("'PLEASE SELECT ANY ONE OF THE COURSE'")
+            return
+        }
+
+        var col5=document.createElement('td')
+        if(Email.value){
+            col5.textContent=Email.value;
+            row.append(col5)
+        }
+        else{
+            alert("'PLEASE GIVE THE E-MAIL'")
+            return
+        }
+
+        var col6=document.createElement('td')
+        col6.innerHTML="<button onclick='deleteitem(event)'>Delete</button>"
+        console.log(col6)
+        row.append(col6)
+
+
+
+
+        table2.append(row)
+    }
+
+    function deleteitem(event)
+    {
+        event.target.closest('tr').remove()
+    }
+</script>
